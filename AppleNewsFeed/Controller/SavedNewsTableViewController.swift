@@ -43,7 +43,7 @@ class SavedNewsTableViewController: UITableViewController {
     func saveData(){
         do {
             try context?.save()
-            basicAlert(title: "Saved!", message: "To see your saved article, go to saved tab bar")
+            //basicAlert(title: "Saved!", message: "To see your saved article, go to saved tab bar")
         } catch  {
             print(error.localizedDescription)
         }
@@ -61,6 +61,7 @@ class SavedNewsTableViewController: UITableViewController {
     }
         
     @IBAction func infoButtonTapped(_ sender: Any) {
+        basicAlert(title: "Select article", message: "To read full article, please select it")
     }
     
     @IBAction func editButtonTapped(_ sender: Any) {
@@ -115,11 +116,10 @@ class SavedNewsTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            context?.delete(savedItems[indexPath.row])
+ 
+        }
+        saveData()
     }
     
 
@@ -128,6 +128,8 @@ class SavedNewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let row = savedItems.remove(at: fromIndexPath.row)
         savedItems.insert(row, at: to.row)
+
+
     }
     
 
@@ -139,14 +141,19 @@ class SavedNewsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let vc = storyboard.instantiateViewController(identifier: "WebViewController") as? WebViewController else {
+            return
+        }
+        let item = savedItems[indexPath.row]
+        vc.urlString = item.url!
+        
+        
+ //       present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
-    */
-
+    
+    
 }

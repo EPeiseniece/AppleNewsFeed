@@ -30,6 +30,7 @@ class SavedNewsTableViewController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         context = appDelegate.persistentContainer.viewContext
         loadData()
+        countItems()
         
         
     }
@@ -37,13 +38,14 @@ class SavedNewsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadData()
+        countItems()
     }
     
     
     func saveData(){
         do {
             try context?.save()
-            //basicAlert(title: "Saved!", message: "To see your saved article, go to saved tab bar")
+ 
         } catch  {
             print(error.localizedDescription)
         }
@@ -58,6 +60,12 @@ class SavedNewsTableViewController: UITableViewController {
         } catch {
             fatalError("Error retrieveing saved Items")
         }
+    }
+    
+    func countItems()
+    {
+        let itemsInTable = String(self.tableView.numberOfRows(inSection: 0))
+        self.title = "Saved \(itemsInTable)"
     }
         
     @IBAction func infoButtonTapped(_ sender: Any) {
@@ -116,10 +124,18 @@ class SavedNewsTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            context?.delete(savedItems[indexPath.row])
- 
+            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                let item = self.savedItems[indexPath.row]
+                self.context?.delete(item)
+                self.saveData()
+            }))
+            self.present(alert, animated: true)
+            countItems()
         }
-        saveData()
+
     }
     
 

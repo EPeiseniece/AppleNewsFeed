@@ -20,8 +20,8 @@ class NewsFeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = " Apple News"
-        activityIndicator.isHidden = true
-        
+        activityIndicator(animated: true)
+        handleGetData()
     }
     
     func activityIndicator(animated: Bool)  {

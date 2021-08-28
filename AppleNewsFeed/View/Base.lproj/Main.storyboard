@@ -232,11 +232,14 @@
         <scene sceneID="2kN-EL-RrV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s6K-MK-ckz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="newspaper" catalog="system" id="Qz3-RS-npJ"/>
+                    <tabBarItem key="tabBarItem" title="News" image="newspaper" catalog="system" id="Qz3-RS-npJ">
+                        <color key="badgeColor" red="0.53611210249999997" green="0.38875780160000001" blue="0.73737124180000002" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdN-bC-4pQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.53611210249999997" green="0.38875780160000001" blue="0.73737124180000002" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -347,7 +350,7 @@
                                 <action selector="infoButtonTapped:" destination="Xeh-Mz-RUF" id="xpW-cr-bDK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="7uM-KB-dQf">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="7uM-KB-dQf">
                             <connections>
                                 <action selector="editButtonTapped:" destination="Xeh-Mz-RUF" id="6m0-QJ-7cE"/>
                             </connections>

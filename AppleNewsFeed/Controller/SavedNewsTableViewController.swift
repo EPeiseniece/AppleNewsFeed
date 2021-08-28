@@ -144,6 +144,7 @@ class SavedNewsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let row = savedItems.remove(at: fromIndexPath.row)
         savedItems.insert(row, at: to.row)
+        
 
 
     }

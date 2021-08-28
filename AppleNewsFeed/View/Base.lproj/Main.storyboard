@@ -239,7 +239,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gdN-bC-4pQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.53611210249999997" green="0.38875780160000001" blue="0.73737124180000002" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -259,6 +259,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
+                        <color key="selectedImageTintColor" systemColor="systemPinkColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="s6K-MK-ckz" kind="relationship" relationship="viewControllers" id="wNH-yn-hKD"/>

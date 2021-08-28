@@ -19,7 +19,7 @@ class Item: JSONDecodable {
     
     
     required init?(json: JSON) {
-        self.desciption = "desciption" <~~ json ?? ""
+        self.desciption = "description" <~~ json ?? ""
         self.title = "title" <~~ json ?? ""
         self.url = "url" <~~ json ?? ""
         self.urlToImage = "urlToImage" <~~ json ?? ""

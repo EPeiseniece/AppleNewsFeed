@@ -49,7 +49,7 @@ class NewsFeedViewController: UIViewController {
     }
     
     func handleGetData(){
-        let jsonUrl = "https://newsapi.org/v2/everything?q=apple&from=2021-08-01&to=2021-08-26&sortBy=popularity&apiKey=c72978134b774e0691ff55b9342a8774"
+        let jsonUrl = "https://newsapi.org/v2/everything?q=apple&from=2021-07-28&to=2021-08-26&sortBy=popularity&apiKey=c72978134b774e0691ff55b9342a8774"
         
         guard let url = URL(string: jsonUrl) else {return}
         
@@ -126,7 +126,20 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let vc = storyboard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
+            return
+        }
+        let item = items[indexPath.row]
+        vc.contentString = item.desciption
+        vc.titleString = item.title
+        vc.webURLString = item.url
+        vc.newsImage = item.image
+        
+ //       present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     
 }
